@@ -6,11 +6,11 @@ public class CellSet {
 
 	private HashSet<Cell> cells = new HashSet<Cell>();
 	private Cell[] cellPositions = new Cell[2];
-	boolean canMerge = false;
+	private boolean canMerge = false;
 
 	public CellSet(Cell x) {
-		cells.add(x);  // when create/initialize this cell set, x is its first cell
-		x.setCellSet(this);  // the x now belongs to current cell set
+		cells.add(x);  // 集合中加入此元素
+		x.setCellSet(this);  // 设置元素的所属集合
 	}
 
 	public HashSet<Cell> getCellSet() {
@@ -31,7 +31,7 @@ public class CellSet {
 				if (c1.adjacent(c2) && 
 						(c1.getCellSet() != c2.getCellSet())
 						&& !canMerge) {
-					System.out.println("("+c1.getX()+","+c1.getY() + ") connected to (" + c2.getX() + "," + c2.getY()+")");
+					//System.out.println("("+c1.getX()+","+c1.getY() + ") connected to (" + c2.getX() + "," + c2.getY()+")");
 					canMerge = true;
 					cellPositions[0] = c1;
 					cellPositions[1] = c2;
@@ -42,7 +42,7 @@ public class CellSet {
 		}
 		
 		if (canMerge) {
-			System.out.println("Merged two sets...");
+			//System.out.println("Merged two sets...");
 			for (Cell c2 : cellSet.getCellSet()) {
 				cells.add(c2);  // current cell set add cell c2 into own set
 				c2.setCellSet(this); // c2 claims it belongs to this cell set
